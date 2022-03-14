@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Inicio from './components/routes/Inicio'; 
+import Blog from './components/routes/Blog';
+import Contacto from './components/routes/Contacto';
+import NoEncontrado from './components/NoEncontrado';
+import Post from './components/routes/Post';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>  
+      <Routes>
+        <Route path='/' element={<App/>}>
+          <Route index element={<Inicio/>} />
+          <Route path='blog' element={<Blog/>} />
+          <Route path='blog/:id' element={<Post/>} />
+          <Route path='contacto' element={<Contacto/>} />
+          <Route path='*' element={<NoEncontrado/>} />
+        </Route>
+      </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
